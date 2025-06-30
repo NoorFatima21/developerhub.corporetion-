@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Navbar with Search Button</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        /* Navbar Container */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            background-color: #f8f9fa;
+            border-bottom: 1px solid #e1e1e1;
+        }
+
+        /* Left Section - Brand */
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .brand-logo {
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+
+        .brand-symbols {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* Middle Section - Search */
+
+        /* Right Section - Icons */
+        .icon-group {
+            display: flex;
+            gap: 25px;
+        }
+
+        .icon-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .icon {
+            font-size: 1.2rem;
+            margin-bottom: 3px;
+            color: #555;
+        }
+
+        .icon-label {
+            font-size: 0.7rem;
+            color: #555;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .search-container {
+                width: 100%;
+            }
+
+            .icon-group {
+                width: 100%;
+                justify-content: space-around;
+            }
+        }
+
+        .secondary-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px 30px;
+            background-color: white;
+            border-bottom: 1px solid #e1e1e1;
+            margin-left: 20px;
+        }
+
+        /* Left-aligned Menu Items */
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        .nav-menu li {
+            position: relative;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+
+        }
+
+        .nav-menu a:hover {
+            color: #007bff;
+        }
+
+        /* Right-aligned Items */
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 1rem;
+            padding: 1rem;
+        }
+
+        /* Div 1: Left List (3 columns) */
+        .left-list {
+            grid-column: span 3;
+            background-color: #f0f0f0;
+            padding: 1rem;
+        }
+
+        .left-list ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .left-list li {
+            margin: 0.5rem 0;
+            background: #ddd;
+            padding: 0.5rem 0;
+        }
+
+        /* Div 2: Center Image (6 columns) */
+        .center-image {
+            grid-column: span 6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #e0e0e0;
+            padding: 1rem;
+        }
+
+        .center-image img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Div 3: Right Boxes (3 columns) */
+        .right-boxes {
+            grid-column: span 3;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            background-color: #f9f9f9;
+            padding: 1rem;
+        }
+
+        .box {
+            background-color: #ccc;
+            padding: 1rem;
+            text-align: center;
+            border-radius: 5px;
+        }
+
+        /* Responsive Layout */
+        @media (max-width: 768px) {
+            .grid-container {
+                grid-template-columns: 1fr;
+            }
+
+            .left-list,
+            .center-image,
+            .right-boxes {
+                grid-column: span 12;
+            }
+
+            .right-boxes {
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+
+            .box {
+                flex: 1 1 30%;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="./webpage2.html">
+    <link rel="stylesheet" href="./webpage3.html">
+    <link rel="stylesheet" href="./webpage4.html">
+</head>
+
+<body class="bg-gray-100">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    
+  <nav class="w-full bg-white shadow-sm px-4 py-3 flex items-center justify-between">
+  
+  <!-- Left: Brand Logo -->
+  <div class="flex items-center gap-3">
+    <img src="../Ecommerce Web Design (Community) (4)/Image/Brand/logo-colored.jpg" alt="Brand Logo" class="h-10 w-auto">
+  </div>
+
+  <!-- Center: Search Bar -->
+  <div class="flex items-center w-full max-w-2xl border border-blue-500 rounded-lg overflow-hidden bg-white mx-6">
+    
+    <!-- Search Input -->
+    <input 
+      type="text" 
+      placeholder="Search..." 
+      class="flex-grow px-3 py-2 text-sm focus:outline-none"
+    >
+
+    <!-- Category Dropdown -->
+    <select 
+      class="h-full border-l border-blue-500 px-3 py-2 text-sm text-gray-700 focus:outline-none"
+    >
+      <option value="">All categories</option>
+      <option value="electronics">Electronics</option>
+      <option value="fashion">Fashion</option>
+      <option value="books">Books</option>
+    </select>
+
+    <!-- Search Button -->
+    <button 
+      class="px-4 py-2 bg-blue-500 text-white text-sm hover:bg-blue-600 transition-colors"
+      title="Search"
+    >
+      Search
+    </button>
+  </div>
+
+  <!-- Right: Icons with Labels -->
+  <div class="flex items-center gap-6 text-sm text-gray-700">
+    
+    <div class="flex flex-col items-center">
+      <i class="fas fa-user-circle text-xl"></i>
+      <span class="mt-1">Profile</span>
+    </div>
+
+    <div class="flex flex-col items-center">
+      <i class="fas fa-envelope text-xl"></i>
+      <span class="mt-1">Messages</span>
+    </div>
+
+    <div class="flex flex-col items-center">
+      <i class="fas fa-heart text-xl"></i>
+      <span class="mt-1">Orders</span>
+    </div>
+
+    <div class="flex flex-col items-center">
+      <i class="fas fa-shopping-cart text-xl"></i>
+      <span class="mt-1">My Cart</span>
+    </div>
+
+  </div>
+
+</nav>
+
+    <!-- 2nd navbar -->
+    <nav class="navbar">
+        <!-- <a href="#" class="navbar-brand">Berend</a> -->
+        <ul class="nav-menu">
+
+            <li><i class="fas fa-bars icon"></i><a href="#">All categories</a></li>
+            <li><a href="#">Hot offers</a></li>
+            <li><a href="#">Gift boxes</a></li>
+            <li><a href="#">Projects</a></li>
+            <li><a href="#">Menu item</a></li>
+            <li><a href="#">Help</a></li>
+        </ul>
+        <div class="flex space-x-4">
+            <div>
+                <select class="border border-gray-300 rounded px-3 py-1 text-sm">
+                    <option>English, USD</option>
+                    <!-- <option>French, EUR</option> -->
+                </select>
+            </div>
+            <div>
+                <select class="border border-gray-300 rounded px-3 py-1 text-sm">
+                    <option>Ship to: US</option>
+                    <!-- <option>Ship to: EU</option> -->
+                </select>
+            </div>
+        </div>
+
+    </nav>
+
+
+    <!-- 2nd part -->
+   <div class="container mx-auto my-6 px-4">
+  <div class="grid grid-cols-1 md:grid-cols-12 gap-4">
+
+    <!-- Sidebar Category -->
+    <div class="md:col-span-3 bg-white p-4 rounded shadow">
+      <ul class="space-y-3 text-sm">
+        <li class="flex items-center text-gray-700 hover:text-blue-600 transition-colors duration-200">
+          <a href="#" class="font-semibold">Automobiles</a>
+        </li>
+        <li class="flex items-center text-gray-700">
+          <a href="#">Clothes and wear</a>
+        </li>
+        <li class="flex items-center text-gray-700">
+          <a href="#">Home interiors</a>
+        </li>
+        <li class="flex items-center text-gray-700">
+          <a href="#">Computer and tech</a>
+        </li>
+        <li class="flex items-center text-gray-700">
+          <a href="#">Tools, equipment</a>
+        </li>
+        <li class="flex items-center text-gray-700">
+          <a href="#">Sports and outdoor</a>
+        </li>
+        <li class="flex items-center text-gray-700">
+          <a href="#">Animal and pets</a>
+        </li>
+        <li class="flex items-center text-gray-700">
+          <a href="#">Machinery tools</a>
+        </li>
+        <li class="flex items-center text-gray-700">
+          <a href="#">More category</a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Center -->
+    <div class="md:col-span-6 bg-white overflow-hidden relative h-[200px]">
+      <img src="../Ecommerce Web Design (Community) (4)/assets/assets/Image/backgrounds/1st banner.png" alt="Banner"
+        class="w-auto h-full" />
+
+      <div class="absolute inset-0 flex flex-col items-start justify-start text-start px-1 mt-8 ml-4">
+        <h4 class="text-xl font-bold text-dark mb-2">
+          Latest trending<br>
+          <span class="font-bold">Electronic items</span>
+        </h4>
+        <button class="mt-2 px-1 py-1 text-dark rounded hover:bg-dark bg-white">
+          Learn more
+        </button>
+      </div>
+    </div>
+
+    <!-- User Box -->
+    <div class="md:col-span-3 bg-gray-100 rounded shadow p-4 flex flex-col justify-between space-y-4">
+      <div>
+        <p class="text-gray-700">
+          <i class="fas fa-user-circle icon relative top-1 mr-1"></i>
+          Hi, user <br> &nbsp;&nbsp;&nbsp;&nbsp;Let's Get started
+        </p>
+
+        <div class="w-full space-y-2 mt-2">
+          <button class="w-full bg-blue-600 text-white text-sm py-2 rounded hover:bg-blue-700">Join now</button>
+          <button class="w-full bg-white text-blue-600 border border-blue-400 text-sm py-2 rounded hover:bg-blue-100">
+            Log in
+          </button>
+        </div>
+      </div>
+
+      <button class="w-full text-sm py-3 rounded text-left font-normal"
+        style="background-color: orangered; color: white; padding-left: 15px;">
+        Get US $10 off <br>with a new <br>suppliers
+      </button>
+
+      <button class="w-full text-sm py-3 rounded text-left font-normal"
+        style="background-color: #4da8e9; color: white; padding-left: 15px;">
+        Send quotes with <br>suppliers <br>preference
+      </button>
+    </div>
+
+  </div>
+</div>
+
+
+   
+    <!-- Full-page container -->
+    <div class="w-full bg-[#f3f8fc] py-6 flex justify-center">
+        <div class="w-[90%] max-w-7xl grid grid-cols-1 lg:grid-cols-7 gap-0">
+
+            <!-- Countdown Box -->
+            <div class="lg:col-span-2 bg-white p-5 rounded-md flex flex-col justify-start border border-gray-300 ">
+                <div class="font-bold mb-1">Deals and offers</div>
+                <div class="text-sm text-gray-500 mb-3">Hygiene equipments</div>
+                <div class="flex gap-1"><br>
+                    <div class="bg-gray-800 text-white text-center px-2 py-1 rounded">
+                        <div>04</div>
+                        <small>Days</small>
+                    </div>
+                    <div class="bg-gray-800 text-white text-center px-2 py-1 rounded">
+                        <div>13</div>
+                        <small>Hour</small>
+                    </div>
+                    <div class="bg-gray-800 text-white text-center px-2 py-1 rounded">
+                        <div>34</div>
+                        <small>Min</small>
+                    </div>
+                    <div class="bg-gray-800 text-white text-center px-2 py-1 rounded">
+                        <div>56</div>
+                        <small>Sec</small>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5 Product Cards -->
+            <div class="bg-white p-2 text-center border border-gray-300 rounded-md">
+                <img src="../Ecommerce Web Design (Community) (4)/Image/tech/8.jpg" class="w-40 mx-auto"
+                    alt="Smartwatch"><br>
+                <div class="text-sm mt-2">Smart watches</div>
+                <div class="bg-red-100 text-red-600 text-xs px-2 py-1 rounded-full inline-block mt-1">-25%</div>
+            </div>
+
+            <div class="bg-white p-2 text-center border border-gray-300 rounded-md">
+                <img src="../Ecommerce Web Design (Community) (4)/Image/tech/7.jpg" class="w-40 mx-auto"
+                    alt="Smartwatch"><br>
+                <div class="text-sm mt-2">Smart watches</div>
+                <div class="bg-red-100 text-red-600 text-xs px-2 py-1 rounded-full inline-block mt-1">-25%</div>
+            </div>
+
+            <div class="bg-white p-2 text-center border border-gray-300 rounded-md">
+                <img src="../Ecommerce Web Design (Community) (4)/Image/tech/3.jpg" class="w-40 mx-auto"
+                    alt="Smartwatch"><br>
+                <div class="text-sm mt-2">Smart watches</div>
+                <div class="bg-red-100 text-red-600 text-xs px-2 py-1 rounded-full inline-block mt-1">-25%</div>
+            </div>
+
+            <div class="bg-white p-2 text-center border border-gray-300 rounded-md">
+                <img src="../Ecommerce Web Design (Community) (4)/Image/tech/4.jpg" class="w-40 mx-auto"
+                    alt="Smartwatch"><br>
+                <div class="text-sm mt-2">Smart watches</div>
+                <div class="bg-red-100 text-red-600 text-xs px-2 py-1 rounded-full inline-block mt-1">-25%</div>
+            </div>
+
+            <div class="bg-white p-2 text-center border border-gray-300 rounded-md">
+                <img src="../Ecommerce Web Design (Community) (4)/Image/tech/2.jpg" class="w-40 mx-auto"
+                    alt="Smartwatch"><br>
+                <div class="text-sm mt-2">Smart watches</div>
+                <div class="bg-red-100 text-red-600 text-xs px-2 py-1 rounded-full inline-block mt-1">-25%</div>
+            </div>
+        </div>
+    </div>
+    <br><br>
+
+    <!-- 4th part -->
+
+    <div class="max-w-7xl mx-auto p-0" style="border-radius: 30px;">
+        <div class="grid grid-cols-5 gap-0">
+
+            <!-- Left block -->
+            <div class="relative row-span-2 bg-white border border-gray-200 rounded-sm overflow-hidden">
+                <img src="../Ecommerce Web Design (Community) (4)/assets/assets/Image/backgrounds/2nd.png"
+                    alt="Electronics" class="w-full h-full object-cover absolute inset-0 z-0" />
+
+                <div class="relative z-10 h-full flex flex-col justify-between p-6 text-dark bg-black/40">
+                    <div>
+                        <h2 class="text-lg font-semibold leading-snug">
+                            Home<br>and outdoor
+                            <br>
+                            <button class="bg-white text-gray-800 text-sm font-medium rounded px-4 py-2 mt-4 w-32">
+                                Source now
+                            </button>
+                        </h2>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Top Row -->
+            <div class="bg-white p-2 flex items-center justify-between border border-gray-200 rounded-sm">
+                <div>
+                    <h3 class="text-sm font-semibold">Soft chairs</h3>
+                    <p class="text-xs text-gray-500">From<br>USD 19</p>
+                </div>
+                <img src="../Ecommerce Web Design (Community) (4)/Image/interior/1.jpg" alt="Soft chairs"
+                    style="height: 80px; width: 80px;">
+            </div>
+
+            <div class="bg-white p-4 flex items-center justify-between border border-gray-200 rounded-sm">
+                <div>
+                    <h3 class="text-sm font-semibold">Sofa & chair</h3>
+                    <p class="text-xs text-gray-500">From<br>USD 19</p>
+                </div>
+                <img src="../Ecommerce Web Design (Community) (4)/Image/interior/2.jpg" alt="Sofa & chair"
+                    style="height: 80px; width: 80px;">
+            </div>
+
+            <div class="bg-white p-4 flex items-center justify-between border border-gray-200 rounded-sm">
+                <div>
+                    <h3 class="text-sm font-semibold">Kitchen dishes</h3>
+                    <p class="text-xs text-gray-500">From<br>USD 19</p>
+                </div>
+                <img src="../Ecommerce Web Design (Community) (4)/Image/interior/3.jpg" alt="Kitchen dishes"
+                    style="height: 100px; width: 100px;">
+            </div>
+
+            <div class="bg-white p-4 flex items-center justify-between border border-gray-200 rounded-sm">
+                <div>
+                    <h3 class="text-sm font-semibold">Smart watches</h3>
+                    <p class="text-xs text-gray-500">From<br>USD 19</p>
+                </div>
+                <img src="../Ecommerce Web Design (Community) (4)/Image/interior/4.jpg" alt="Smart watches"
+                    style="height: 100px; width: 100px;">
+            </div>
+            <div class="bg-white p-4 flex items-center justify-between border border-gray-200 rounded-sm">
+                <div>
+                    <h3 class="text-sm font-semibold">Electric kattle</h3>
+                    <p class="text-xs text-gray-500">From<br>USD 39</p>
+                </div>
+                <img src="../Ecommerce Web Design (Community) (4)/Image/interior/5.jpg" alt="Blenders"
+                    style="height: 100px; width: 100px;">
+            </div>
+
+            <!-- Bottom Row -->
+            <div class="bg-white p-4 flex items-center justify-between border border-gray-200 rounded-sm">
+                <div>
+                    <h3 class="text-sm font-semibold">Kitchen mixer</h3>
+                    <p class="text-xs text-gray-500">From<br>USD 100</p>
+                </div>
+                <img src="../Ecommerce Web Design (Community) (4)/Image/interior/6.jpg" alt="Kitchen mixer"
+                    style="height: 100px; width: 100px;">
+            </div>
+
+            <div class="bg-white p-4 flex items-center justify-between border border-gray-200 rounded-sm">
+                <div>
+                    <h3 class="text-sm font-semibold">Blenders</h3>
+                    <p class="text-xs text-gray-500">From<br>USD 39</p>
+                </div>
+                <img src="../Ecommerce Web Design (Community) (4)/Image/interior/7.jpg" alt="Blenders"
+                    style="height: 100px; width: 100px;">
+            </div>
+            <div class="bg-white p-4 flex items-center justify-between border border-gray-200 rounded-sm">
+                <div>
+                    <h3 class="text-sm font-semibold">Electric kattle</h3>
+                    <p class="text-xs text-gray-500">From<br>USD 39</p>
+                </div>
+                <img src="../Ecommerce Web Design (Community) (4)/Image/interior/8.jpg" alt="Blenders"
+                    style="height: 100px; width: 100px;">
+            </div>
+        </div>
+    </div>
+    <br><br>
+
+    <!-- 5th part -->
+    <div class="max-w-7xl mx-auto p-0" style="border-radius: 30px;">
+        <div class="grid grid-cols-5 gap-0">
+
+            <!-- Left block -->
+            
+            <div class="relative row-span-2 bg-white border border-gray-200 rounded-sm overflow-hidden">
+                <img src="../Ecommerce Web Design (Community) (4)/assets/assets/Image/backgrounds/3rd.png"
+                    alt="Electronics" class="w-full h-full object-cover absolute inset-0 z-0" />
+
+                <div class="relative z-10 h-full flex flex-col justify-between p-6 text-dark bg-black/40">
+                    <div>
+                        <h2 class="text-lg font-semibold leading-snug">
+                            Customers<br>electronics and<br>Gadgets
+                        </h2>
+                        <button class="bg-white text-gray-800 text-sm font-medium rounded px-2 py-2 mt-4 w-32">
+                            Source now
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <!-- Top Row -->
+            <div class="bg-white p-4 flex items-center justify-between border border-gray-200 rounded-sm">
+                <div>
+                    <h3 class="text-sm font-semibold">Smarts watches</h3>
+                    <p class="text-xs text-gray-500">From<br>USD 19</p>
+                </div>
+                <img src="../Ecommerce Web Design (Community) (4)/Image/tech/7.jpg" alt="Soft chairs"
+                    style="height: 100px; width: 100px;">
+            </div>
+
+            <div class="bg-white p-4 flex items-center justify-between border border-gray-200 rounded-sm">
+                <div>
+                    <h3 class="text-sm font-semibold">Cameras</h3>
+                    <p class="text-xs text-gray-500">From<br>USD 89</p>
+                </div>
+                <img src="../Ecommerce Web Design (Community) (4)/Image/tech/4.jpg" alt="Sofa & chair"
+                    style="height: 100px; width: 100px;">
+            </div>
+
+            <div class="bg-white p-4 flex items-center justify-between border border-gray-200 rounded-sm">
+                <div>
+                    <h3 class="text-sm font-semibold">Headphones</h3>
+                    <p class="text-xs text-gray-500">From<br>USD 10</p>
+                </div>
+                <img src="../Ecommerce Web Design (Community) (4)/Image/tech/8.jpg" alt="Kitchen dishes"
+                    style="height: 100px; width: 100px;">
+            </div>
+
+            <div class="bg-white p-4 flex items-center justify-between border border-gray-200 rounded-sm">
+                <div>
+                    <h3 class="text-sm font-semibold">Smart watches</h3>
+                    <p class="text-xs text-gray-500">From<br>USD 10</p>
+                </div>
+                <img src="../Ecommerce Web Design (Community) (4)/Image/tech/5.jpg" alt="Smart watches"
+                    style="height: 100px; width: 100px;">
+            </div>
+
+            <!-- Bottom Row -->
+            <div class="bg-white p-4 flex items-center justify-between border border-gray-200 rounded-sm">
+                <div>
+                    <h3 class="text-sm font-semibold">Gaming set</h3>
+                    <p class="text-xs text-gray-500">From<br>USD 100</p>
+                </div>
+                <img src="../Ecommerce Web Design (Community) (4)/Image/tech/1.jpg" alt="Kitchen mixer"
+                    style="height: 100px; width: 100px;">
+            </div>
+
+            <div class="bg-white p-4 flex items-center justify-between border border-gray-200 rounded-sm">
+                <div>
+                    <h3 class="text-sm font-semibold">Laptops & PC</h3>
+                    <p class="text-xs text-gray-500">From<br>USD 39</p>
+                </div>
+                <img src="../Ecommerce Web Design (Community) (4)/Image/tech/9.jpg" alt="Blenders"
+                    style="height: 100px; width: 100px;">
+            </div>
+
+            <div class="bg-white p-4 flex items-center justify-between border border-gray-200 rounded-sm">
+                <div>
+                    <h3 class="text-sm font-semibold">smartphones</h3>
+                    <p class="text-xs text-gray-500">From<br>USD 39</p>
+                </div>
+                <img src="../Ecommerce Web Design (Community) (4)/Image/tech/2.jpg" alt="Blenders"
+                    style="height: 100px; width: 100px;">
+            </div>
+            <div class="bg-white p-4 flex items-center justify-between border border-gray-200 rounded-sm">
+                <div>
+                    <h3 class="text-sm font-semibold">Electric kattle</h3>
+                    <p class="text-xs text-gray-500">From<br>USD 39</p>
+                </div>
+                <img src="../Ecommerce Web Design (Community) (4)/Image/tech/10.jpg" alt="Blenders"
+                    style="height: 100px; width: 100px;">
+            </div>
+
+
+        </div>
+    </div>
+    <br><br>
+    <div class="max-w-7xl mx-auto rounded-lg" style="background-color: #076fb9;">
+        <div class="grid grid-cols-12 p-8 gap-3">
+
+            <!-- Left Side (6 cols) -->
+            <div class="col-span-12 md:col-span-6 flex flex-col justify-start text-white">
+                <h2 class="text-3xl font-bold mb-4">an easy way to send <br> requests to all suppliers</h2>
+                <p class="text-sm leading-relaxed">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem adipisci perferendis vero hic.
+                    Dolore quas
+                    sit vel.
+                </p>
+            </div>
+
+            <!-- Right Side (6 cols, Form) -->
+            <div class="col-span-12 md:col-span-6">
+                <div class="bg-white rounded-lg p-6 shadow-md">
+                    <form id="signupForm" onsubmit="handleSubmit(event)">
+                        <div class="mb-4">
+                            <h2><b>Send quote to suppliers</b></h2> <br>
+                            <textarea name="name" class="w-full border border-gray-300 rounded px-3 py-2 text-lg"
+                                required placeholder="What items you need?"></textarea>
+                        </div>
+
+                        <div class="mb-4">
+                            <input name="message" class="w-full border border-gray-300 rounded px-3 py-2 text-sm"
+                                placeholder="Type more details">
+                        </div>
+
+                        <div class="flex gap-2 mb-4">
+                            <input type="text" class="w-1/2 border border-gray-300 rounded px-3 py-2 text-sm"
+                                placeholder="Quantity">
+                            <input type="text" class="w-1/2 border border-gray-300 rounded px-3 py-2 text-sm"
+                                placeholder="Pcs">
+                        </div>
+
+                        <button type="submit"
+                            class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition">
+                            Send inquiry
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <br>
+    <h1 class="ml-8 font-bold text-lg">Recommended items</h1>
+    <br>
+    <div class="grid grid-cols-5 xl:grid-cols-4- gap-4 p-6">
+        
+        <div class="bg-white p-4 rounded-2xl shadow-md w-auto">
+           
+            <img src="..//Ecommerce Web Design (Community) (4)/Image/cloth/1.jpg"style="
+               mx-auto w-[100px] h-[150px] object-cover mb-2 px-2">
+            <small class="text-xs font-semibold">$10.38</small>
+            <p class="text-gray-500 text-xs">T-shirt with multiple colors <br>for mens</p>
+
+        </div>
+        
+        <div class="bg-white p-4 rounded-2xl shadow-md w-auto">
+            
+            <img src="../Ecommerce Web Design (Community) (4)/Image/cloth/2.jpg"style="
+               mx-auto w-[100px] h-[150px] object-cover mb-2 px-2">
+            <small class="text-xs font-semibold">$10.38</small>
+            <p class="text-gray-500 text-xs">T-shirt with multiple colors <br>for mens</p>
+
+        </div>
+        <div class="bg-white p-4 rounded-2xl shadow-md w-auto">
+            
+            <img src="../Ecommerce Web Design (Community) (4)/Image/cloth/3.jpg"style="
+               mx-auto w-[100px] h-[150px] object-cover mb-2 px-2">
+            <small class="text-xs font-semibold">$10.38</small>
+            <p class="text-gray-500 text-xs">T-shirt with multiple colors <br>for mens</p>
+
+        </div>
+        <div class="bg-white p-4 rounded-2xl shadow-md w-auto">
+           
+            <img src="../Ecommerce Web Design (Community) (4)/Image/cloth/4.jpg"style="
+               mx-auto w-[100px] h-[150px] object-cover mb-2 px-2">
+            <small class="text-xs font-semibold">$10.38</small>
+            <p class="text-gray-500 text-xs">T-shirt with multiple colors <br>for mens</p>
+
+        </div>
+        <div class="bg-white p-4 rounded-2xl shadow-md w-auto">
+            
+            <img src="../Ecommerce Web Design (Community) (4)/Image/cloth/5.jpg"style="
+               mx-auto w-[100px] h-[150px] object-cover mb-2 px-2">
+            <small class="text-xs font-semibold">$10.38</small>
+            <p class="text-gray-500 text-xs">T-shirt with multiple colors <br>for mens</p>
+
+        </div>
+        <div class="bg-white p-4 rounded-2xl shadow-md w-auto">
+            
+            <img src="../Ecommerce Web Design (Community) (4)/Image/cloth/6.jpg"style="
+               mx-auto w-[100px] h-[150px] object-cover mb-2 px-2">
+            <small class="text-xs font-semibold">$10.38</small>
+            <p class="text-gray-500 text-xs">T-shirt with multiple colors <br>for mens</p>
+
+        </div>
+        <div class="bg-white p-4 rounded-2xl shadow-md w-auto">
+            
+            <img src="../Ecommerce Web Design (Community) (4)/Image/cloth/7.jpg"style="
+               mx-auto w-[100px] h-[150px] object-cover mb-2 px-2">
+            <small class="text-xs font-semibold">$10.38</small>
+            <p class="text-gray-500 text-xs">T-shirt with multiple colors <br>for mens</p>
+
+        </div>
+        <div class="bg-white p-4 rounded-2xl shadow-md w-auto">
+            
+            <img src="../Ecommerce Web Design (Community) (4)/Image/cloth/3.jpg"style="mx-auto w-[100px] h-[150px] object-cover mb-2 px-2;">
+            <small class="text-xs font-semibold">$10.38</small>
+            <p class="text-gray-500 text-xs">T-shirt with multiple colors <br>for mens</p>
+
+        </div>
+        <div class="bg-white p-4 rounded-2xl shadow-md w-auto">
+            
+            <img src="../Ecommerce Web Design (Community) (4)/Image/cloth/2.jpg" alt=""
+                class="mx-auto w-[100px] h-[150px] object-cover mb-2 px-2;">
+            <small class="text-xs font-semibold">$10.38</small>
+            <p class="text-gray-500 text-xs">T-shirt with multiple colors <br>for mens</p>
+
+        </div>
+        <div class="bg-white p-4 rounded-2xl shadow-md w-auto">
+            
+            <img src="../Ecommerce Web Design (Community) (4)/Image/cloth/1.jpg" alt="T-shirt"
+                class="mx-auto w-[100px] h-[150px] object-cover mb-2 px-2">
+
+            
+            <small class="text-xs font-semibold block mb-1">$10.38</small>
+
+            <p class="text-gray-500 text-xs leading-snug">
+                T-shirt with multiple colors <br>for mens
+            </p>
+        </div>
+
+    </div>
+    <br>
+    <h1 class="ml-10 font-bold text-lg">Our Extra Services</h1>
+
+    <div
+        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl px-4 bg-[#f0f8fc] flex justify-center items-center py-10 ml-8">
+
+        <!-- Card 1 -->
+        <div class="bg-white rounded-xl shadow-md overflow-hidden relative">
+            <img src="../Ecommerce Web Design (Community) (4)/assets/assets/Image/backgrounds/1st service.png"
+                alt="Industry Hubs" class="w-full h-50 object-cover">
+
+            <div class="p-6 pt-10 text-sm font-medium text-gray-800">
+                Source from<br>Industry Hubs
+            </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="bg-white rounded-xl shadow-md overflow-hidden relative">
+            <img src="../Ecommerce Web Design (Community) (4)/assets/assets/Image/backgrounds/2nd service.png"
+                alt="Customize Products" class="w-full h-50 object-cover">
+
+            <div class="p-6 pt-10 text-sm font-medium text-gray-800">
+                Customize Your<br>Products
+            </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="bg-white rounded-xl shadow-md overflow-hidden relative">
+            <img src="../Ecommerce Web Design (Community) (4)/assets/assets/Image/backgrounds/3rd service.png"
+                alt="Shipping" class="w-full h-50 object-cover">
+
+            <div class="p-6 pt-10 text-sm font-medium text-gray-800">
+                Fast, reliable shipping<br>by ocean or air
+            </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="bg-white rounded-xl shadow-md overflow-hidden relative">
+            <img src="../Ecommerce Web Design (Community) (4)/assets/assets/Image/backgrounds/4th.png" alt="Inspection"
+                class="w-full h-50 object-cover">
+
+            <div class="p-6 pt-8 text-sm font-medium text-gray-800">
+                Product monitoring<br>and inspection
+            </div>
+        </div>
+
+    </div>
+<!-- country info -->
+    <section class="py-8">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-lg font-semibold text-gray-800 mb-6">Suppliers by region</h2>
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+                <div class="flex items-center gap-2 text-sm text-gray-700"><img
+                        src="../Ecommerce Web Design (Community) (4)/assets/assets/Layout1/Image/flags/AE@2x.png"
+                        class="w-5 h-5"> Arabic
+                    Emirates<br>
+                    <h4 class="text-gray-500 text-xs"><br>shopname.ae</h4>
+                </div>
+                <div class="flex items-center gap-2 text-sm text-gray-700"><img
+                        src="../Ecommerce Web Design (Community) (4)/assets/assets/Layout1/Image/flags/CN@2x.png"
+                        class="w-5 h-5">
+                    Australia<br><span class="text-gray-500 text-xs">shopname.au</span></div>
+                <div class="flex items-center gap-2 text-sm text-gray-700"><img
+                        src="../Ecommerce Web Design (Community) (4)/assets/assets/Layout1/Image/flags/DE@2x.png"
+                        class="w-5 h-5"> United
+                    States<br><span class="text-gray-500 text-xs">shopname.us</span></div>
+                <div class="flex items-center gap-2 text-sm text-gray-700"><img
+                        src="../Ecommerce Web Design (Community) (4)/assets/assets/Layout1/Image/flags/DK@2x.png"
+                        class="w-5 h-5">
+                    Russia<br><span class="text-gray-500 text-xs">shopname.ru</span></div>
+                <div class="flex items-center gap-2 text-sm text-gray-700"><img
+                        src="../Ecommerce Web Design (Community) (4)/assets/assets/Layout1/Image/flags/FR@2x.png"
+                        class="w-5 h-5">
+                    Italy<br><span class="text-gray-500 text-xs">shopname.it</span></div>
+                <div class="flex items-center gap-2 text-sm text-gray-700"><img
+                        src="../Ecommerce Web Design (Community) (4)/assets/assets/Layout1/Image/flags/GB@2x.png"
+                        class="w-5 h-5">
+                    Denmark<br><span class="text-gray-500 text-xs">denmark.com.dk</span></div>
+                <div class="flex items-center gap-2 text-sm text-gray-700"><img
+                        src="../Ecommerce Web Design (Community) (4)/assets/assets/Layout1/Image/flags/icon.png"
+                        class="w-5 h-5">
+                    France<br><span class="text-gray-500 text-xs">shopname.com.fr</span></div>
+                <div class="flex items-center gap-2 text-sm text-gray-700"><img
+                        src="../Ecommerce Web Design (Community) (4)/assets/assets/Layout1/Image/flags/IT@2x.png"
+                        class="w-5 h-5"> Arabic
+                    Emirates<br><span class="text-gray-500 text-xs">shopname.ae</span></div>
+                <div class="flex items-center gap-2 text-sm text-gray-700"><img
+                        src="../Ecommerce Web Design (Community) (4)/assets/assets/Layout1/Image/flags/RU@2x.png"
+                        class="w-5 h-5">
+                    China<br><span class="text-gray-500 text-xs">shopname.cn</span></div>
+                <div class="flex items-center gap-2 text-sm text-gray-700"><img
+                        src="../Ecommerce Web Design (Community) (4)/assets/assets/Layout1/Image/flags/US@2x.png"
+                        class="w-5 h-5"> Great
+                    Britain<br><span class="text-gray-500 text-xs">shopname.co.uk</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Subscription -->
+    <section class="bg-gray-100 py-10">
+        <div class="max-w-2xl mx-auto px-4 text-center">
+            <h3 class="text-lg font-semibold text-gray-800 mb-2">Subscribe on our newsletter</h3>
+            <p class="text-gray-600 mb-6 text-sm">Get daily news on upcoming offers from many suppliers all over the
+                world</p>
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                <input type="email" placeholder="Email"
+                    class="w-full sm:w-auto px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none" />
+                <button class="px-6 py-2 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition">
+                    Subscribe
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!--  Footer -->
+    <footer class="bg-white py-12 mt-8">
+        <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-6 gap-8 text-sm text-gray-600">
+            <!-- Logo -->
+            <div class="col-span-1">
+                <img src="../Ecommerce Web Design (Community) (4)/Image/Brand/logo-colored.jpg" alt="">
+                <p class="mb-4">Best information about the company goes here but now lorem ipsum is</p>
+                <div class="icon-group">
+                    <div class="icon-item">
+
+                        <div class="flex gap-3 text-xl text-gray-400">
+                            <img src="../Ecommerce Web Design (Community) (4)/images/facebook3.png" alt="">
+                            <img src="../Ecommerce Web Design (Community) (4)/images/instagram3.png" alt="">
+                            <img src="../Ecommerce Web Design (Community) (4)/images/linkedin3.png" alt="">
+                            <img src="../Ecommerce Web Design (Community) (4)/images/twitter3.png" alt="">
+                            <img src="../Ecommerce Web Design (Community) (4)/images/youtube3.png" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- About -->
+            <div>
+                <h4 class="text-gray-800 font-semibold mb-3">About</h4>
+                <ul class="space-y-2">
+                    <li><a href="#" class="hover:underline">About Us</a></li>
+                    <li><a href="#" class="hover:underline">Find Store</a></li>
+                    <li><a href="#" class="hover:underline">Categories</a></li>
+                    <li><a href="#" class="hover:underline">Blogs</a></li>
+                </ul>
+            </div>
+
+            <!-- Partnership -->
+            <div>
+                <h4 class="text-gray-800 font-semibold mb-3">Partnership</h4>
+                <ul class="space-y-2">
+                    <li><a href="#" class="hover:underline">About Us</a></li>
+                    <li><a href="#" class="hover:underline">Find Store</a></li>
+                    <li><a href="#" class="hover:underline">Categories</a></li>
+                    <li><a href="#" class="hover:underline">Blogs</a></li>
+                </ul>
+            </div>
+
+            <!-- Information -->
+            <div>
+                <h4 class="text-gray-800 font-semibold mb-3">Information</h4>
+                <ul class="space-y-2">
+                    <li><a href="#" class="hover:underline">Help Center</a></li>
+                    <li><a href="#" class="hover:underline">Money Refund</a></li>
+                    <li><a href="#" class="hover:underline">Shipping</a></li>
+                    <li><a href="#" class="hover:underline">Contact Us</a></li>
+                </ul>
+            </div>
+
+            <!-- For Users -->
+            <div>
+                <h4 class="text-gray-800 font-semibold mb-3">For users</h4>
+                <ul class="space-y-2">
+                    <li><a href="#" class="hover:underline">Login</a></li>
+                    <li><a href="#" class="hover:underline">Register</a></li>
+                    <li><a href="#" class="hover:underline">Settings</a></li>
+                    <li><a href="#" class="hover:underline">My Orders</a></li>
+                </ul>
+            </div>
+
+            <!-- Buttons -->
+            <div>
+                <h4 class="text-gray-800 font-semibold mb-3">Get app</h4>
+                <div class="flex gap-4">
+                    <!-- App Store -->
+                    <a href="https://www.apple.com/app-store/" target="_blank">
+                        <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg"
+                            alt="Download on the App Store" class="h-10">
+                    </a>
+
+                    <!-- Google Play -->
+                    <a href="https://play.google.com/store" target="_blank">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"
+                            alt="Get it on Google Play" class="h-10">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

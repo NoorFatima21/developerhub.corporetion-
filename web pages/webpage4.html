@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        /* Navbar Container */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            background-color: #f8f9fa;
+            border-bottom: 1px solid #e1e1e1;
+        }
+
+        /* Left Section - Brand */
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .brand-logo {
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+
+        .brand-symbols {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* Middle Section - Search */
+
+        /* Right Section - Icons */
+        .icon-group {
+            display: flex;
+            gap: 25px;
+        }
+
+        .icon-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .icon {
+            font-size: 1.2rem;
+            margin-bottom: 3px;
+            color: #555;
+        }
+
+        .icon-label {
+            font-size: 0.7rem;
+            color: #555;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .search-container {
+                width: 100%;
+            }
+
+            .icon-group {
+                width: 100%;
+                justify-content: space-around;
+            }
+        }
+
+        .secondary-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px 30px;
+            background-color: white;
+            border-bottom: 1px solid #e1e1e1;
+            margin-left: 20px;
+        }
+
+        /* Left-aligned Menu Items */
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        .nav-menu li {
+            position: relative;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+
+        }
+
+        .nav-menu a:hover {
+            color: #007bff;
+        }
+
+        /* Right-aligned Items */
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 1rem;
+            padding: 1rem;
+        }
+
+        /* Div 1: Left List (3 columns) */
+        .left-list {
+            grid-column: span 3;
+            background-color: #f0f0f0;
+            padding: 1rem;
+        }
+
+        .left-list ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .left-list li {
+            margin: 0.5rem 0;
+            background: #ddd;
+            padding: 0.5rem 0;
+        }
+
+        /* Div 2: Center Image (6 columns) */
+        .center-image {
+            grid-column: span 6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #e0e0e0;
+            padding: 1rem;
+        }
+
+        .center-image img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Div 3: Right Boxes (3 columns) */
+        .right-boxes {
+            grid-column: span 3;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            background-color: #f9f9f9;
+            padding: 1rem;
+        }
+
+        .box {
+            background-color: #ccc;
+            padding: 1rem;
+            text-align: center;
+            border-radius: 5px;
+        }
+
+        /* Responsive Layout */
+        @media (max-width: 768px) {
+            .grid-container {
+                grid-template-columns: 1fr;
+            }
+
+            .left-list,
+            .center-image,
+            .right-boxes {
+                grid-column: span 12;
+            }
+
+            .right-boxes {
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+
+            .box {
+                flex: 1 1 30%;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- Add Font Awesome for icons if not already included -->
+<!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"> -->
+
+<nav class="w-full bg-white shadow-sm px-4 py-3 flex items-center justify-between">
+  
+  <!-- Left: Brand Logo -->
+  <div class="flex items-center gap-3">
+    <img src="../Ecommerce Web Design (Community) (4)/Image/Brand/logo-colored.jpg" alt="Brand Logo" class="h-10 w-auto">
+  </div>
+
+  <!-- Center: Search Bar -->
+  <div class="flex items-center w-full max-w-2xl border border-blue-500 rounded-lg overflow-hidden bg-white mx-6">
+    
+    <!-- Search Input -->
+    <input 
+      type="text" 
+      placeholder="Search..." 
+      class="flex-grow px-3 py-2 text-sm focus:outline-none"
+    >
+
+    <!-- Category Dropdown -->
+    <select 
+      class="h-full border-l border-blue-500 px-3 py-2 text-sm text-gray-700 focus:outline-none"
+    >
+      <option value="">All categories</option>
+      <option value="electronics">Electronics</option>
+      <option value="fashion">Fashion</option>
+      <option value="books">Books</option>
+    </select>
+
+    <!-- Search Button -->
+    <button 
+      class="px-4 py-2 bg-blue-500 text-white text-sm hover:bg-blue-600 transition-colors"
+      title="Search"
+    >
+      Search
+    </button>
+  </div>
+
+  <!-- Right: Icons with Labels -->
+  <div class="flex items-center gap-6 text-sm text-gray-700">
+    
+    <div class="flex flex-col items-center">
+      <i class="fas fa-user-circle text-xl"></i>
+      <span class="mt-1">Profile</span>
+    </div>
+
+    <div class="flex flex-col items-center">
+      <i class="fas fa-envelope text-xl"></i>
+      <span class="mt-1">Messages</span>
+    </div>
+
+    <div class="flex flex-col items-center">
+      <i class="fas fa-heart text-xl"></i>
+      <span class="mt-1">Orders</span>
+    </div>
+
+    <div class="flex flex-col items-center">
+      <i class="fas fa-shopping-cart text-xl"></i>
+      <span class="mt-1">My Cart</span>
+    </div>
+
+  </div>
+
+</nav>
+
+    <!-- 2nd navbar -->
+    <nav class="navbar">
+        <!-- <a href="#" class="navbar-brand">Berend</a> -->
+        <ul class="nav-menu">
+
+            <li><i class="fas fa-bars icon"></i><a href="#">All categories</a></li>
+            <li><a href="#">Hot offers</a></li>
+            <li><a href="#">Gift boxes</a></li>
+            <li><a href="#">Projects</a></li>
+            <li><a href="#">Menu item</a></li>
+            <li><a href="#">Help</a></li>
+        </ul>
+        <div class="flex space-x-4">
+            <div>
+                <select class="border border-gray-300 rounded px-3 py-1 text-sm">
+                    <option>English, USD</option>
+                    <!-- <option>French, EUR</option> -->
+                </select>
+            </div>
+            <div>
+                <select class="border border-gray-300 rounded px-3 py-1 text-sm">
+                    <option>Ship to: US</option>
+                    <!-- <option>Ship to: EU</option> -->
+                </select>
+            </div>
+        </div>
+
+    </nav>
+    <br>
+<div class="bg-white p-6 rounded-lg shadow-md max-w-6xl mx-auto flex flex-col lg:flex-row gap-6">
+  <!-- Left: Product Image and Gallery -->
+  <div class="flex flex-col items-center lg:w-1/2">
+    <img src="../Ecommerce Web Design (Community) (4)/image/cloth/1.jpg" alt="Main Product" class="w-64 h-64 object-contain mb-4 border">
+
+    <div class="flex gap-2">
+      <!-- Thumbnails -->
+      <img src="../Ecommerce Web Design (Community) (4)/Image/cloth/1.jpg" class="w-12 h-12 border p-1" />
+      <img src="../Ecommerce Web Design (Community) (4)/Image/cloth/1.jpg" class="w-12 h-12 border p-1" />
+      <img src="../Ecommerce Web Design (Community) (4)/Image/cloth/1.jpg" class="w-12 h-12 border p-1" />
+      <img src="../Ecommerce Web Design (Community) (4)/Image/cloth/1.jpg" class="w-12 h-12 border p-1" />
+      <img src="../Ecommerce Web Design (Community) (4)/Image/cloth/1.jpg" class="w-12 h-12 border p-1" />
+    </div>
+  </div>
+
+  <!-- Right: Product Info -->
+  <div class="flex-1">
+    <!-- Stock & Title -->
+    <p class="text-green-600 font-medium mb-1">✔ In stock</p>
+    <h2 class="text-xl font-semibold">Mens Long Sleeve T-shirt Cotton Base Layer Slim Muscle</h2>
+
+    <!-- Rating -->
+    <div class="flex items-center text-sm text-gray-600 my-2">
+      <span class="text-orange-500 font-semibold mr-1">9.3</span> · 
+      <span class="ml-1">32 reviews</span> · 
+      <span class="ml-1">154 sold</span>
+    </div>
+
+    <!-- Price Tiers -->
+    <div class="flex mt-4 mb-4">
+      <div class="bg-orange-100 p-3 border-r border-gray-300 text-center w-32">
+        <div class="text-red-600 font-bold text-lg">$98.00</div>
+        <div class="text-sm text-gray-600">50-100 pcs</div>
+      </div>
+      <div class="bg-orange-50 p-3 border-r border-gray-300 text-center w-32">
+        <div class="text-orange-500 font-bold text-lg">$90.00</div>
+        <div class="text-sm text-gray-600">100-700 pcs</div>
+      </div>
+      <div class="bg-orange-50 p-3 text-center w-32">
+        <div class="text-orange-500 font-bold text-lg">$78.00</div>
+        <div class="text-sm text-gray-600">700+ pcs</div>
+      </div>
+    </div>
+
+    <!-- Product Details Table -->
+    <div class="text-sm text-gray-700 space-y-1 mb-4">
+      <p><strong>Price:</strong> Negotiable</p>
+      <p><strong>Type:</strong> Classic shoes</p>
+      <p><strong>Material:</strong> Plastic material</p>
+      <p><strong>Design:</strong> Modern nice</p>
+      <p><strong>Customization:</strong> Customized logo and design custom packages</p>
+      <p><strong>Protection:</strong> Refund Policy</p>
+      <p><strong>Warranty:</strong> 2 years full warranty</p>
+    </div>
+  </div>
+
+  <!-- Supplier Card -->
+ <div class="bg-gray-50 p-4 rounded-lg border w-64">
+    <div class="flex items-center gap-3 mb-3">
+      <div class="bg-blue-100 p-2 rounded-full text-blue-600 font-bold text-lg">R</div>
+      <div>
+        <p class="text-sm font-semibold">Supplier</p>
+        <p class="text-sm text-gray-600">Guanjpi Trading LLC</p>
+      </div>
+    </div>
+
+    <ul class="text-sm text-gray-600 mb-3 space-y-1">
+      <li>🇩🇪 Germany, Berlin</li>
+      <li>✔ Verified Seller</li>
+      <li>🌍 Worldwide shipping</li>
+    </ul>
+
+    <button class="w-full bg-blue-600 text-white py-2 rounded text-sm mb-2">Send inquiry</button>
+    <button class="w-full border text-blue-600 py-1 rounded text-sm">Seller's profile</button>
+    <p class="text-xs text-blue-500 text-center mt-2 cursor-pointer">💙 Save for later</p>
+  </div>
+</div>
+</div>
+
+<div class="max-w-7xl mx-auto p-6 grid grid-cols-1 lg:grid-cols-4 gap-6 ">
+  <!-- Main Content -->
+  <div class="lg:col-span-3 space-y-6 bg-white p-4">
+    
+    <!-- Tabs -->
+    <div class="border rounded-lg overflow-hidden">
+      <div class="flex border-b text-sm font-medium">
+        <button class="px-4 py-2 bg-blue-100 text-blue-600 border-r">Description</button>
+        <button class="px-4 py-2">Reviews</button>
+        <button class="px-4 py-2">Shipping</button>
+        <button class="px-4 py-2">About seller</button>
+      </div>
+
+      <!-- Description Content -->
+      <div class="p-4 text-sm text-gray-700">
+        <p class="mb-2">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...
+        </p>
+        <p class="mb-4">
+          Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        </p>
+
+        <!-- Specs Table -->
+        <table class="w-full border border-gray-300 text-left text-sm mb-4">
+          <tbody>
+            <tr class="border-b"><td class="p-2 font-semibold">Model</td><td class="p-2">#8786867</td></tr>
+            <tr class="border-b"><td class="p-2 font-semibold">Style</td><td class="p-2">Classic style</td></tr>
+            <tr class="border-b"><td class="p-2 font-semibold">Certificate</td><td class="p-2">ISO-889921212</td></tr>
+            <tr class="border-b"><td class="p-2 font-semibold">Size</td><td class="p-2">34mm × 450mm × 19mm</td></tr>
+            <tr><td class="p-2 font-semibold">Memory</td><td class="p-2">36GB RAM</td></tr>
+          </tbody>
+        </table>
+
+        <!-- Bullet List -->
+        <ul class="space-y-1 list-inside text-gray-800">
+          <li>✔ Some great feature name here</li>
+          <li>✔ Lorem ipsum dolor sit amet, consectetur</li>
+          <li>✔ Duis aute irure dolor in reprehenderit</li>
+          <li>✔ Some great feature name here</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Related Products -->
+    <div>
+     
+    </div>
+
+    <!-- CTA Banner -->
+   
+  </div>
+
+  <!-- Sidebar: You may like -->
+  <div class="space-y-4 bg-white p-4">
+    <h3 class="text-md font-semibold">You may like</h3>
+    <div class="space-y-3 text-sm">
+      <!-- Repeat each suggestion -->
+      <div class="flex items-center gap-2">
+        <img src="../Ecommerce Web Design (Community) (4)/Image/cloth/1.jpg" class="w-12 h-12 object-cover border rounded" />
+        <div>
+          <p class="font-medium leading-tight">Men Blazers Sets Elegant Formal</p>
+          <p class="text-gray-500">$700 – $999.50</p>
+        </div>
+      </div>
+      <!-- Add more as needed -->
+       <div class="flex items-center gap-2">
+        <img src="../Ecommerce Web Design (Community) (4)/Image/cloth/2.jpg" class="w-12 h-12 object-cover border rounded" />
+        <div>
+          <p class="font-medium leading-tight">Men Blazers Sets Elegant Formal</p>
+          <p class="text-gray-500">$700 – $999.50</p>
+        </div>
+      </div>
+      <div class="flex items-center gap-2">
+        <img src="../Ecommerce Web Design (Community) (4)/Image/cloth/3.jpg" class="w-12 h-12 object-cover border rounded" />
+        <div>
+          <p class="font-medium leading-tight">Men Blazers Sets Elegant Formal</p>
+          <p class="text-gray-500">$700 – $999.50</p>
+        </div>
+      </div>
+      <div class="flex items-center gap-2">
+        <img src="../Ecommerce Web Design (Community) (4)/Image/cloth/4.jpg" class="w-12 h-12 object-cover border rounded" />
+        <div>
+          <p class="font-medium leading-tight">Men Blazers Sets Elegant Formal</p>
+          <p class="text-gray-500">$700 – $999.50</p>
+        </div>
+      </div>
+      <div class="flex items-center gap-2">
+        <img src="../Ecommerce Web Design (Community) (4)/Image/cloth/5.jpg" class="w-12 h-12 object-cover border rounded" />
+        <div>
+          <p class="font-medium leading-tight">Men Blazers Sets Elegant Formal</p>
+          <p class="text-gray-500">$700 – $999.50</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+<div class="bg-white p-6 rounded-lg shadow-md max-w-6xl mx-auto h-full w-full gap-6">
+ <h2 class="text-lg font-semibold mb-4">Related products</h2> <br>
+      <div class="flex overflow-x-auto gap-4 ">
+        <!-- Repeat these blocks -->
+        <div class="min-w-[120px] text-center text-sm ">
+          <img src="../Ecommerce Web Design (Community) (4)/Image/cloth/5.jpg" class="mx-auto mb-1 bg-gray" />
+          <p class="font-medium">Xiaomi Redmi 8 Original</p>
+          <p class="text-gray-500">$32.00–$40.00</p>
+        </div>
+        <!-- Add more cards similarly -->
+         <div class="min-w-[120px] text-center text-sm bg-gray">
+          <img src="../Ecommerce Web Design (Community) (4)/Image/cloth/1.jpg" class="mx-auto mb-1" />
+          <p class="font-medium">Xiaomi Redmi 8 Original</p>
+          <p class="text-gray-500">$32.00–$40.00</p>
+        </div>
+        <div class="min-w-[120px] text-center text-sm bg-gray">
+          <img src="../Ecommerce Web Design (Community) (4)/Image/cloth/3.jpg"class="mx-auto mb-1" />
+          <p class="font-medium">Xiaomi Redmi 8 Original</p>
+          <p class="text-gray-500">$32.00–$40.00</p>
+        </div>
+        <div class="min-w-[120px] text-center text-sm bg-gray">
+          <img src="../Ecommerce Web Design (Community) (4)/Image/cloth/2.jpg" class="mx-auto mb-1" />
+          <p class="font-medium">Xiaomi Redmi 8 Original</p>
+          <p class="text-gray-500">$32.00–$40.00</p>
+        </div>
+        <div class="min-w-[120px] text-center text-sm bg-gray">
+          <img src="../Ecommerce Web Design (Community) (4)/image/cloth/4.jpg" class="mx-auto mb-1" />
+          <p class="font-medium">Xiaomi Redmi 8 Original</p>
+          <p class="text-gray-500">$32.00–$40.00</p>
+        </div>
+        <div class="min-w-[120px] text-center text-sm bg-gray">
+          <img src="../Ecommerce Web Design (Community) (4)/Image/cloth/7.jpg" class="mx-auto mb-1" />
+          <p class="font-medium">Xiaomi Redmi 8 Original</p>
+          <p class="text-gray-500">$32.00–$40.00</p>
+        </div>
+      </div>
+      </div>
+      
+      <br>
+       <div class="bg-blue-600 text-white px-6 py-4 rounded-lg flex justify-between items-center " style="margin-left: 70px ; margin-right: 70px;">
+      <div>
+        <h3 class="text-lg font-semibold">Super discount on more than 100 USD</h3>
+        <p class="text-sm">Have you ever finally just write dummy info</p>
+      </div>
+      <button class="bg-yellow-400 hover:bg-yellow-500 px-4 py-2 rounded text-sm">Shop now</button>
+    </div> <br>
+     <footer class="bg-white py-12 mt-8">
+        <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-6 gap-8 text-sm text-gray-600">
+            <!-- Logo -->
+            <div class="col-span-1">
+                <img src="../Ecommerce Web Design (Community) (4)/Image/Brand/logo-colored.jpg" alt="">
+                <p class="mb-4">Best information about the company goes here but now lorem ipsum is</p>
+                <div class="icon-group">
+                    <div class="icon-item">
+
+                        <div class="flex gap-3 text-xl text-gray-400">
+                            <img src="../Ecommerce Web Design (Community) (4)/images/facebook3.png" alt="">
+                            <img src="../Ecommerce Web Design (Community) (4)/images/instagram3.png" alt="">
+                            <img src="../Ecommerce Web Design (Community) (4)/images/linkedin3.png" alt="">
+                            <img src="../Ecommerce Web Design (Community) (4)/images/twitter3.png" alt="">
+                            <img src="../Ecommerce Web Design (Community) (4)/images/youtube3.png" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- About -->
+            <div>
+                <h4 class="text-gray-800 font-semibold mb-3">About</h4>
+                <ul class="space-y-2">
+                    <li><a href="#" class="hover:underline">About Us</a></li>
+                    <li><a href="#" class="hover:underline">Find Store</a></li>
+                    <li><a href="#" class="hover:underline">Categories</a></li>
+                    <li><a href="#" class="hover:underline">Blogs</a></li>
+                </ul>
+            </div>
+
+            <!-- Partnership -->
+            <div>
+                <h4 class="text-gray-800 font-semibold mb-3">Partnership</h4>
+                <ul class="space-y-2">
+                    <li><a href="#" class="hover:underline">About Us</a></li>
+                    <li><a href="#" class="hover:underline">Find Store</a></li>
+                    <li><a href="#" class="hover:underline">Categories</a></li>
+                    <li><a href="#" class="hover:underline">Blogs</a></li>
+                </ul>
+            </div>
+
+            <!-- Information -->
+            <div>
+                <h4 class="text-gray-800 font-semibold mb-3">Information</h4>
+                <ul class="space-y-2">
+                    <li><a href="#" class="hover:underline">Help Center</a></li>
+                    <li><a href="#" class="hover:underline">Money Refund</a></li>
+                    <li><a href="#" class="hover:underline">Shipping</a></li>
+                    <li><a href="#" class="hover:underline">Contact Us</a></li>
+                </ul>
+            </div>
+
+            <!-- For Users -->
+            <div>
+                <h4 class="text-gray-800 font-semibold mb-3">For users</h4>
+                <ul class="space-y-2">
+                    <li><a href="#" class="hover:underline">Login</a></li>
+                    <li><a href="#" class="hover:underline">Register</a></li>
+                    <li><a href="#" class="hover:underline">Settings</a></li>
+                    <li><a href="#" class="hover:underline">My Orders</a></li>
+                </ul>
+            </div>
+
+            <!-- App Buttons -->
+            <div>
+                <h4 class="text-gray-800 font-semibold mb-3">Get app</h4>
+                <div class="flex gap-4">
+                    <!-- App Store -->
+                    <a href="https://www.apple.com/app-store/" target="_blank">
+                        <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg"
+                            alt="Download on the App Store" class="h-10">
+                    </a>
+
+                    <!-- Google Play -->
+                    <a href="https://play.google.com/store" target="_blank">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"
+                            alt="Get it on Google Play" class="h-10">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
